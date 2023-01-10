@@ -101,7 +101,7 @@ def pforkscrape(number, conn):
     return reviewdict
 
 
-#inserting pitchfork data into sql database
+#inserts pitchfork data into sql database
 
 if os.path.isfile('./Pitchfork_Data.db') is False:
     conn = createconnection('Pitchfork_Data.db')
@@ -117,10 +117,4 @@ reviewdict = pforkscrape(numpages, conn)
 with open('pitchforkDict.txt', 'wb') as p:
     pickle.dump(reviewdict, p, protocol=-1)
     p.close()
-
-#multiprocessing
-# if __name__ == '__main__':
-#     with concurrent.futures.ProcessPoolExecutor() as executor:
-#         pageslist = list(range(1, numpages))
-#         results = [executor.map(pforkscrape, pageslist) for page in pageslist]
 
